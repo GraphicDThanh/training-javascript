@@ -2,10 +2,7 @@ import { connect } from 'react-redux';
 import { toggleTodo, VisibilityFilters } from './../actions/index';
 import TodoList from '../components/TodoList';
 
-const getVisibleTodos = (
-  todos,
-  filter
-) => {
+const getVisibleTodos = (todos, filter) => {
   switch (filter) {
     case VisibilityFilters.SHOW_ALL:
       return todos;
@@ -32,7 +29,7 @@ const mapStateToProps = state => ({
 
 // func receive dispatch method and return callback props
 const mapDispatchToProps = dispatch => ({
-  onTodoClick: id => {
+  onTodoClick(id) {
     dispatch(toggleTodo(id))
   }
 });
