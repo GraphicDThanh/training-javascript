@@ -13,7 +13,18 @@ import registerServiceWorker from './registerServiceWorker';
 // - Telling what reducers to use
 // - Bring together the view binding and the view
 // by use Provider from 'react-redux'
-const store = createStore(rootReducer);
+const persistedState = {
+  todos: [{
+    id: 1,
+    text: 'Welcome to Redux',
+    completed: true
+  }],
+  visibilityFilter: 'SHOW_ACTIVE'
+};
+const store = createStore(
+  rootReducer,
+  persistedState
+);
 
 ReactDOM.render(
   <Provider store={store}>
