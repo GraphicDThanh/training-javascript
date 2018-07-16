@@ -7,7 +7,8 @@ import rootReducer from './reducers'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import registerServiceWorker from './registerServiceWorker'
-import { getState, setState } from './loadState'
+import { getState, saveState } from './loadState'
+import throttle from 'lodash/throttle'
 
 // Root component
 // - Create store
@@ -28,9 +29,10 @@ const store = createStore(
   persistedState
 )
 
-store.subscribe(() => {
-  setState(store.getState())
-})
+store.subscribe(throttle(() => {
+  saveState(store.getState())
+}, 1000))
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

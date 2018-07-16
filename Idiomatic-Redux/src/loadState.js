@@ -10,13 +10,11 @@ export const getState = () => {
   }
 }
 
-export const setState = (state) => {
-  console.log('testing setState 1', state);
+export const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state)
     localStorage.setItem('state', serializedState)
   } catch (e) {
     console.log('ERROR SET STATE', e)
   }
-  console.log('testing setState 2');
 }
